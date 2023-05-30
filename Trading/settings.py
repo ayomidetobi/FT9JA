@@ -173,7 +173,5 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar": "sidebar-light-fuchsia",
     #  "sidebar": "sidebar-dark-fuchsia",
 }
-CSRF_TRUSTED_ORIGINS = [
-    'https://ft9ja-stobsy.up.railway.app/'
-]
+CSRF_TRUSTED_ORIGINS = ['https://ft9ja-stobsy.up.railway.app']
 
