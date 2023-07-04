@@ -111,9 +111,11 @@
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-currency-dollar"></i>
                     </div>
-                    {% if total_balance > 100 %}
+                    {% if total_balance > 100000 %}
+                    <div class="ps-3">
                     <h6> &#x24;{{ total_balance|floatformat:2 }}</h6>
                     <span class="text-success small pt-1 fw-bold">{{percentage_increase_balance}}%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    </div>
                     {% else %}
                     <div class="ps-3">
                       <h6> &#x24;{{ total_balance|floatformat:2 }}</h6>
@@ -193,13 +195,14 @@
                   <script>
                     
                         
-                    let pnl={{profit_loss_data}};
+                    let pnl={{balance_data|safe}};
                     let time= "{{trade.timestamp}}";
+                    let equ={{equity_data |safe}}
                     let categories = {{ time_data|safe }};
                     document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
-                          name: 'Profit/Loss',
+                          name: 'trade balance',
                           data: pnl
                         }],
                         chart: {
@@ -263,9 +266,10 @@
                     // Update chart data using the received data
                     // Replace the 'chart-id' with your actual chart ID
                     
-                    let data_pnl=  {{ profit_loss_data |safe}};
+                    let data_pnl=  {{ balance_data |safe}};
                     let time= "{{trade.timestamp}}";
                     let categories = {{ time_data|safe }};
+                    let equ={{equity_data |safe}}
                     new ApexCharts(document.querySelector("#reportsChart"), {
                       updateSeries: [ {
                         name: 'Profit/Loss',
